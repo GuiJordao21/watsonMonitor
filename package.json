@@ -1,6 +1,6 @@
 {
   "name": "watson-monitor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple package to monitor watson services.",
   "main": "watsonMonitor.js",
   "scripts": {
