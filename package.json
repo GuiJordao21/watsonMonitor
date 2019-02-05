@@ -21,5 +21,9 @@
   "bugs": {
     "url": "https://github.com/GuiJordao21/watsonMonitor/issues"
   },
-  "homepage": "https://github.com/GuiJordao21/watsonMonitor#readme"
+  "homepage": "https://github.com/GuiJordao21/watsonMonitor#readme",
+  "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
+    "watson-developer-cloud": "^3.17.0"
+  }
 }
