@@ -27,12 +27,29 @@ function assistant(parameters) {
         timeElapsed = [0, 0],
         lastError;
 
-    setInterval(() => { clearErrs() }, parameters.errsClear*1000);
-    setInterval(() => { checkWatson() }, parameters.watsonCheck*1000);
+    setInterval(() => {
+
+        let resp = clearErrs();
+
+        if (parameters.verbose == true) {
+            console.log(resp);
+        }
+
+    }, parameters.errsClear * 1000);
+    
+    setInterval(() => {
+
+        let resp = checkWatson();
+
+        if (parameters.verbose == true) {
+            console.log(resp);
+        }
+
+    }, parameters.watsonCheck * 1000);
 
     function checkWatson() {
         if (totalErr >= 10) {
-            if ((timeElapsed[0] - timeControl[0]) >= (parameters.emailTime*60)) {
+            if ((timeElapsed[0] - timeControl[0]) >= (parameters.emailTime * 60)) {
                 return errEmail();
             } else {
 
@@ -87,7 +104,7 @@ function assistant(parameters) {
 
             } else {
 
-                if(parameters.intent == "email"){
+                if (parameters.intent == "email") {
                     emailsList = response.examples.map(x => {
                         return x.text;
                     });
@@ -109,5 +126,5 @@ function assistant(parameters) {
 }
 
 module.exports = {
-    assistant:assistant,
+    assistant: assistant,
 }
