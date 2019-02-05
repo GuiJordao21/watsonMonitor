@@ -2,6 +2,8 @@ To use this module, first you need to have a sendgrid account. We only support t
 
 We only monitor watson assistant now.
 
+We check your assistant by calling the listExamples() function and checking the output. The standard way is to create an intent, called "email", and add all the email addresses you want to be warned as examples of that intent. When the method is called, we use this list to send the emails. If you don't want to do things this way, you can pass your on array of emails, just check the example.
+
 you need a Object with this fields
 
 ```
