@@ -3,11 +3,13 @@ const watson = require("watson-developer-cloud"),
 
 /**
  * Created by: Guilherme Jordão
+ * https://github.com/GuiJordao21
  * 
  * @param {Object} parameters - all details this module needs to run smoothilly.
  * @param {string} parameters.sendgridKey - key to use sendgrid API.
  * @param {string} parameters.watsonAssistantKey - WatsonAssistant API key
  * @param {string} parameters.watsosWorkspaceId - WatsonAssistant workspaceId
+ * @param {boolean} [parameters.verbose = true] - routine's text output.
  * @param {number} [parameters.watsonCheck = 1] - seconds to wait before check watson API again.
  * @param {number} [parameters.errsClear = 60] - seconds to wait before clear error cache.
  * @param {number} [parameters.emailTime = 30] - minutes to wait before send another email.
@@ -31,22 +33,19 @@ function assistant(parameters) {
     function checkWatson() {
         if (totalErr >= 10) {
             if ((timeElapsed[0] - timeControl[0]) >= (parameters.emailTime*60)) {
-                errEmail();
+                return errEmail();
             } else {
 
-                console.error(`the error happened, but we need to wait 30 minutes before sending another email.`);
-                console.error(`Last known errro ---> ${lastError}`);
+                return `the error happened, but we need to wait 30 minutes before sending another email.\nLast known errro ---> ${lastError}`;
 
             }
         } else {
             timeElapsed = process.hrtime();
-            assistantCall();
+            return assistantCall();
         }
     }
 
     function errEmail() {
-
-        console.log("sending emails now...");
 
         emailsList.forEach(email => {
             const msg = {
@@ -60,6 +59,8 @@ function assistant(parameters) {
         });
 
         timeControl = process.hrtime();
+
+        return `sending emails now...`
 
     }
 
@@ -82,8 +83,7 @@ function assistant(parameters) {
                 totalErr++;
                 lastError = err;
 
-                console.error(`ERROR CALLING ASSISTANT ---> ${err}`);
-                console.log(totalErr);
+                return `ERROR CALLING ASSISTANT ---> ${err}\n${totalErr}`;
 
             } else {
 
@@ -93,8 +93,7 @@ function assistant(parameters) {
                     });
                 }
 
-                console.log("emails will be send to:")
-                console.log(emailsList);
+                return `emails will be send to:\n${emailsList}`;
 
             }
         });
@@ -102,8 +101,8 @@ function assistant(parameters) {
 
     function clearErrs() {
 
-        console.log("Cleaning error cache...")
         totalErr = 0;
+        return `Cleaning error cache...`
 
     }
 

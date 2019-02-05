@@ -1,0 +1,25 @@
+{
+  "name": "watson-monitor",
+  "version": "1.0.0",
+  "description": "Simple package to monitor watson services.",
+  "main": "watsonMonitor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuiJordao21/watsonMonitor.git"
+  },
+  "keywords": [
+    "watson",
+    "ibm",
+    "monitor",
+    "watcher"
+  ],
+  "author": "Guilherme Jordão",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuiJordao21/watsonMonitor/issues"
+  },
+  "homepage": "https://github.com/GuiJordao21/watsonMonitor#readme"
+}
